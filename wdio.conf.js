@@ -42,30 +42,8 @@ exports.config = {
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
     logLevel: 'error',
-    //
-    // Set specific log levels per logger
-    // loggers:
-    // - webdriver, webdriverio
-    // - @wdio/browserstack-service, @wdio/devtools-service, @wdio/sauce-service
-    // - @wdio/mocha-framework, @wdio/jasmine-framework
-    // - @wdio/local-runner
-    // - @wdio/sumologic-reporter
-    // - @wdio/cli, @wdio/config, @wdio/utils
-    // Level of logging verbosity: trace | debug | info | warn | error | silent
-    // logLevels: {
-    //     webdriver: 'info',
-    //     '@wdio/appium-service': 'info'
-    // },
-    //
-    // If you only want to run your tests until a specific amount of tests have failed use
-    // bail (default is 0 - don't bail, run all tests).
     bail: 0,
-    //
-    // Set a base URL in order to shorten url command calls. If your `url` parameter starts
-    // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
-    // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
-    // gets prepended directly.
-    baseUrl: testEnv.url,//'https://automation-sandbox.herokuapp.com/',
+    baseUrl: testEnv.url,
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 6000,
@@ -77,7 +55,9 @@ exports.config = {
     // Default request retries count
     connectionRetryCount: 3,
 
-    services: ['chromedriver'],
+    services: [
+        ['selenium-standalone', { driver: {chrome: 'latest'} }]
+    ],
 
     framework: 'mocha',
     reporters: ['spec'],
