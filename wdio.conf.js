@@ -12,27 +12,16 @@ exports.config = {
     specs: [
         './test/specs/**/*.js'
     ],
-    // Patterns to exclude.
-    exclude: [
-        // 'path/to/excluded/files'
-    ],
+    suites: {
+        login: ['./test/specs/login.spec.js'],
+        invoices: ['./test/specs/invoice.spec.js']
+    },
 
-    //
-    maxInstances: 10,
-
-    capabilities: [{
-    
-        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-        // grid with only 5 firefox instances available you can make sure that not more than
-        // 5 instances get started at a time.
-        maxInstances: 5,
-        //
+    maxInstances: 1,
+    capabilities: [{ 
+        maxInstances: 1,
         browserName: 'chrome',
         acceptInsecureCerts: true
-        // If outputDir is provided WebdriverIO can capture driver session logs
-        // it is possible to configure which logTypes to include/exclude.
-        // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-        // excludeDriverLogs: ['bugreport', 'server'],
     }],
     //
     // ===================
@@ -47,12 +36,7 @@ exports.config = {
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 6000,
-    //
-    // Default timeout in milliseconds for request
-    // if browser driver or grid doesn't send response
     connectionRetryTimeout: 120000,
-    //
-    // Default request retries count
     connectionRetryCount: 3,
 
     services: [
@@ -71,33 +55,6 @@ exports.config = {
     // =====
     // Hooks
     // =====
-    /**
-     * Gets executed once before all workers get launched.
-     * @param {Object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     */
-    // onPrepare: function (config, capabilities) {
-    // },
-    /**
-     * Gets executed before a worker process is spawned and can be used to initialise specific service
-     * for that worker as well as modify runtime environments in an async fashion.
-     * @param  {String} cid      capability id (e.g 0-0)
-     * @param  {[type]} caps     object containing capabilities for session that will be spawn in the worker
-     * @param  {[type]} specs    specs to be run in the worker process
-     * @param  {[type]} args     object that will be merged with the main configuration once worker is initialized
-     * @param  {[type]} execArgv list of string arguments passed to the worker process
-     */
-    // onWorkerStart: function (cid, caps, specs, args, execArgv) {
-    // },
-    /**
-     * Gets executed just after a worker process has exited.
-     * @param  {String} cid      capability id (e.g 0-0)
-     * @param  {Number} exitCode 0 - success, 1 - fail
-     * @param  {[type]} specs    specs to be run in the worker process
-     * @param  {Number} retries  number of retries used
-     */
-    // onWorkerEnd: function (cid, exitCode, specs, retries) {
-    // },
 
     beforeSession: function (config, capabilities, specs, cid) {
         global.testEnv = testEnv
@@ -157,7 +114,6 @@ exports.config = {
         await browser.saveScreenshot(path.resolve(outputFile))
     },
 
-
     /**
      * Hook that gets executed after the suite has ended
      * @param {Object} suite suite details
@@ -190,21 +146,4 @@ exports.config = {
      */
     // afterSession: function (config, capabilities, specs) {
     // },
-    /**
-     * Gets executed after all workers got shut down and the process is about to exit. An error
-     * thrown in the onComplete hook will result in the test run failing.
-     * @param {Object} exitCode 0 - success, 1 - fail
-     * @param {Object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {<Object>} results object containing test results
-     */
-    // onComplete: function(exitCode, config, capabilities, results) {
-    // },
-    /**
-    * Gets executed when a refresh happens.
-    * @param {String} oldSessionId session ID of the old session
-    * @param {String} newSessionId session ID of the new session
-    */
-    // onReload: function(oldSessionId, newSessionId) {
-    // }
 }

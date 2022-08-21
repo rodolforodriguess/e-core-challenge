@@ -3,7 +3,8 @@ import * as main from './main'
 class Login {
 
     async open() {
-        await browser.url('/');
+        await browser.url('/')
+        await browser.maximizeWindow()
     }
 
     async login(username, password){
@@ -13,7 +14,6 @@ class Login {
         await passwordFiled.addValue(password)
         const loginBtn = await $(main.LOGIN_SELECTORS.loginBtn)
         await loginBtn.click()
-        //await browser.pause(2000)
     }
 
     async checkLoginPgLoaded(){

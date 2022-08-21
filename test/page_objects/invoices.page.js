@@ -4,8 +4,11 @@ class Invoices {
 
     async openInvoice(positionInv){
         const invLink = await $$(main.INVOICES_SELECTORS.invoicesLinks)
-        await invLink[1].click()
-        await browser.pause(4000)
+        await invLink[positionInv].click()
+    }
+
+    async switchWindow(nmInvoice){
+        await browser.switchWindow(testEnv.url + '/invoice/' + nmInvoice)
     }
 
 
