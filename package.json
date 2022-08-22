@@ -7,7 +7,7 @@
         "clean:reports": "rm -rf reports && mkdir reports && mkdir reports/screenshots && touch ./reports/screenshots/.gitkeep",
         "login": "wdio wdio.conf.js --suite login",
         "invoice": "wdio wdio.conf.js --suite invoices",
-        "wdio": "wdio run wdio.conf.js",
+        "all": "wdio run wdio.conf.js",
         "allure:report": "allure generate ./reports/allure-results --clean && allure serve ./reports/allure-results"
     },
     "author": "Rodolfo",

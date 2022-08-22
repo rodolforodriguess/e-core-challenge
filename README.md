@@ -17,7 +17,7 @@ Selenium Standalone - Plugin to manage different browsers
 [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ## Installing allure-reporter in your machine in order to generate and see reports generated
-[To install allure, click here](https://docs.qameta.io/allure/#_reporting)
+[To install allure, click here](https://docs.qameta.io/allure)
 
 ## After installing tools and drivers above, follow the instructions right below:
 
@@ -45,6 +45,8 @@ To run scenarios of a specific spec, here is some of scripts which are in packag
 login scenarios: ``` npm run login ```
 
 invoice scenarios ``` npm run invoice ```
+
+all scenarios ``` npm run all ```
 
 
 > You can pass USERNAME and PASSWORD variables with your own user before the script such as
