@@ -42,15 +42,9 @@ npm run script name
 To run scenarios of a specific spec, here is some of scripts which are in package.json file
 
 
-login scenarios: ``` npm run login  ```
+login scenarios: ``` npm run login ```
 
-centro de origem scenarios: ``` npm run centro:origem ```
- 
-confirmar coletas scenarios ``` npm run conf:coleta ```
-
-sem sucesso scenarios ```npm run sem:sucesso ```
-
-reimpressao scenarios ```npm run reimpressao ```
+invoice scenarios ``` npm run invoice ```
 
 
 > You can pass USERNAME and PASSWORD variables with your own user before the script such as

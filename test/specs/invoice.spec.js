@@ -20,10 +20,11 @@ describe('Check invoice information', () => {
         const invoiceNumber = await $(main.INV_DETAILS_SELECTOR.invoiceInf).then(el => el.getText())
         await expect(invoiceNumber.replace(/[^0-9]/g, '')).toEqual(main.invoiceData[0].invoiceNumber)
         const customerDetails = await $(main.INV_DETAILS_SELECTOR.customerDetails)
-        const custDt = [main.invoiceData[0].customerDt1, main.invoiceData[0].customerDt2, main.invoiceData[0].customerDt3]
-        await expect(customerDetails).toHaveTextContaining(custDt[0])
-        await expect(customerDetails).toHaveTextContaining(custDt[1])
-        await expect(customerDetails).toHaveTextContaining(custDt[2])
+        await expect(customerDetails).toHaveTextContaining(
+            main.invoiceData[0].customerDt1 + "\n" +
+            main.invoiceData[0].customerDt2 + "\n" +
+            main.invoiceData[0].customerDt3
+        )
         const bookingDt = await $$(main.INV_DETAILS_SELECTOR.bookingStayDetails)
         await expect(bookingDt[0]).toHaveText(main.invoiceData[0].bookingCode)
         await expect(bookingDt[1]).toHaveText(main.invoiceData[0].room)
@@ -36,5 +37,4 @@ describe('Check invoice information', () => {
         await expect(billing[1]).toHaveText(main.invoiceData[0].taxVAT)
         await expect(billing[2]).toHaveText(main.invoiceData[0].totalAmount)
     })
-
 })

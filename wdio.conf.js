@@ -1,5 +1,6 @@
 const path = require('path')
 const qaEnv = require('./test/envs/qa.json')
+const allureReporter = require('@wdio/allure-reporter').default
 
 let testEnv
 
@@ -23,12 +24,6 @@ exports.config = {
         browserName: 'chrome',
         acceptInsecureCerts: true
     }],
-    //
-    // ===================
-    // Test Configurations
-    // ===================
-    // Define all options that are relevant for the WebdriverIO instance here
-    //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
     logLevel: 'error',
     bail: 0,
@@ -44,8 +39,13 @@ exports.config = {
     ],
 
     framework: 'mocha',
-    reporters: ['spec'],
-
+    reporters: ['spec', 
+    ['allure', {
+        outputDir: './reports/allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false
+    }]
+    ],
 
     mochaOpts: {
         ui: 'bdd',
@@ -112,6 +112,7 @@ exports.config = {
         const file_name = `${test.parent} - ${test.title}.png`
         const outputFile = path.join('./reports/screenshots/', file_name)
         await browser.saveScreenshot(path.resolve(outputFile))
+        allureReporter.addStep(file_name, [{outputFile}])
     },
 
     /**
@@ -119,31 +120,5 @@ exports.config = {
      * @param {Object} suite suite details
      */
     // afterSuite: function (suite) {
-    // },
-    /**
-     * Runs after a WebdriverIO command gets executed
-     * @param {String} commandName hook command name
-     * @param {Array} args arguments that command would receive
-     * @param {Number} result 0 - command success, 1 - command error
-     * @param {Object} error error object if any
-     */
-    // afterCommand: function (commandName, args, result, error) {
-    // },
-    /**
-     * Gets executed after all tests are done. You still have access to all global variables from
-     * the test.
-     * @param {Number} result 0 - test pass, 1 - test fail
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
-     */
-    // after: function (result, capabilities, specs) {
-    // },
-    /**
-     * Gets executed right after terminating the webdriver session.
-     * @param {Object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
-     */
-    // afterSession: function (config, capabilities, specs) {
     // },
 }

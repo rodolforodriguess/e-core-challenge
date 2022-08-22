@@ -1,1 +1,8 @@
 node_modules
+test.js
+
+!reports/screenshots/.gitkeep
+reports/screenshots/*.png
+reports/screenshots/*.mp4
+reports/allure-results/
+allure-report/*
