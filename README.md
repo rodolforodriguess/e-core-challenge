@@ -17,7 +17,7 @@ Selenium Standalone - Plugin to manage different browsers
 [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ## Installing allure-reporter in your machine in order to generate and see reports generated
-[To install allure, click here](https://docs.qameta.io/allure){:target="_blank"}
+[To install allure, click here](https://docs.qameta.io/allure)
 
 ## After installing tools and drivers above, follow the instructions right below:
 
